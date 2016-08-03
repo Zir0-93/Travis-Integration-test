@@ -5,6 +5,7 @@ services:
 - docker
 script: mvn clean package
 after_success:
+- ls -l
 - chmod a+x Dockerfile
 - cp /home/travis/build/k-dang/Travis-Integration-test/target/Travis-Integration-test-0.0.1-SNAPSHOT.war Travis-Integration-test.war
 - ls -l
