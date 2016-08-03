@@ -1,0 +1,38 @@
+sudo: required
+language: java
+jdk: oraclejdk8
+services:
+- docker
+script: mvn clean package
+after_success:
+- chmod a+x Dockerfile
+- cp /home/travis/build/kdangtesting/HelloWorldMVC/target/HelloWorldMVC-0.0.1-SNAPSHOT.war HelloWorldMVC.war
+- ls -l
+- curl -L "https://cli.run.pivotal.io/stable?release=linux64-binary&source=github"  |
+  tar -zx
+- export PATH=$PATH:.
+- cf --version
+- cf install-plugin -f https://static-ice.ng.bluemix.net/ibm-containers-linux_x64
+- cf plugins
+- cf login -a https://api.ng.bluemix.net -u kdang@ca.ibm.com -p $secretpw
+- cf ic login
+- cf ic images
+- docker build -t tom_cat .
+- docker tag tom_cat registry.ng.bluemix.net/ahhhh/tom_cat
+- docker push registry.ng.bluemix.net/ahhhh/tom_cat
+- cf ic images
+- cf ic ps -a
+- cf ic rename tom_cat old_tom_cat
+- cf ic stop old_tom_cat
+- cf ic ps -a
+- cf ic rm $(cf ic ps -a -q)
+- cf ic ps -a
+- cf ic run -p 8080 --name tom_cat registry.ng.bluemix.net/ahhhh/tom_cat
+- cf ic ps
+- cf ic ip list
+- cf ic ip unbind 169.44.120.170 old_tom_cat
+- cf ic inspect tom_cat
+- cf ic ip bind 169.44.120.170 tom_cat
+env:
+  global:
+  - secure: "ipe85VAs63uzykNHbrRxfplrwvX6E7P3Hxd3mvzaQqYBoG52EyEzGsgavNllcjQSp/Ts8m34Wa2zt4AUTpSShhO0hL5XKcASZicIOHN3LXBGEgaTVnr5KpAUjBDsWmWG5cYGy7xLF6jAi7fxri5kLIaUxXeUWWQxEYcyyAoNb1/8XrDRa9a43q3nZDEJkvvjieUfGIjImNIKha27c5BJmYdpHFuAb2w0HQ94I+KL+PC3gAhGvQ7/hb/geyZTxWqLTGQDNBtRqrm+R8T7vNBqKMdheFsXwy96qVste98VFGXKvd8B6Ir3N4UzxenW7OibyDJIPvII6mQGnaDiKaZaAx68XsIHVnYU1kU7ji67Oldck2Kp277QJ6ZrReueNQ/eWNiBnxJJ9u/LFFWVUKLsXfZJ0i34OTHuJQpRxeuu3GyAJnkIVKssgQFi+68emQ3tEyIvJ/sa1kdX0vu1QFDevVNdeotYBAehwzLfO360UlRFz/RlWOOMDO7hgYvlOGCV8Ay4+GoS3ImghyEf8FDCI2nAkCK/5eSmxcNGnKNuAD6B7JOc+pFPllWO73i3DBoy9OpPVvv/0zxu4yq9zTFxAawkkpeDPMP8itszs294Z8xVcwCrlWFIuPMdnY66kakOjJVrA7X0P/bsLMRZMYHhhEUg8Uyz0IJW6izytxEhIMY="
