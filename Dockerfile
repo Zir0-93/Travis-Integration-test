@@ -1,2 +1,2 @@
 FROM tomcat:8.0-jre8
-COPY ./HelloWorldMVC.war /usr/local/tomcat/webapps/
+COPY ./Travis-Integration-test.war /usr/local/tomcat/webapps/
