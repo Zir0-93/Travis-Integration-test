@@ -5,7 +5,7 @@ services:
 - docker
 script: mvn clean package
 after_success:
-- chmod a+x Dockerfile
+- chmod a+x Dockerfile deploy.sh
 - cp /home/travis/build/k-dang/Travis-Integration-test/target/HelloWorldMVC-0.0.1-SNAPSHOT.war HelloWorldMVC.war
 - ls -l
 - ./deploy.sh
