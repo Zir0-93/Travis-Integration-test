@@ -8,35 +8,7 @@ after_success:
 - chmod a+x Dockerfile
 - cp /home/travis/build/k-dang/Travis-Integration-test/target/HelloWorldMVC-0.0.1-SNAPSHOT.war HelloWorldMVC.war
 - ls -l
-- curl -L "https://cli.run.pivotal.io/stable?release=linux64-binary&source=github"  |
-  tar -zx
-- export PATH=$PATH:.
-- cf --version
-- cf install-plugin -f https://static-ice.ng.bluemix.net/ibm-containers-linux_x64
-- cf plugins
-- cf login -a https://api.ng.bluemix.net -u kdang@ca.ibm.com -p $secretpw
-- cf ic login
-- cf ic images
-- docker build -t tom_cat .
-- docker tag tom_cat registry.ng.bluemix.net/ahhhh/tom_cat
-- docker push registry.ng.bluemix.net/ahhhh/tom_cat
-- cf ic images
-- cf ic ps -a
-- cf ic rename tom_cat old_tom_cat
-- cf ic stop old_tom_cat
-- sleep 5
-- cf ic ps -a
-- cf ic rm $(cf ic ps -a -q)
-- cf ic ps -a
-- cf ic run -p 8080 --name tom_cat registry.ng.bluemix.net/ahhhh/tom_cat
-- sleep 5
-- cf ic ps
-- cf ic ip list
-- cf ic ip unbind 169.44.125.72 old_tom_cat
-- sleep 5
-- cf ic inspect tom_cat
-- cf ic ps
-- cf ic ip bind 169.44.125.72 tom_cat
+- ./success.sh
 env:
   global:
     secure: "eR45MxCMfaKaQxzY2T9WjFHpmfiF7nkxDCu8H2v+PD/QxiwXk8pI2bBzIfnBzYDpA2YSNANb8WVTKeMsI1TPyCnCC8LxQtZ+6RmR6Rqrx67GK5wJcXPL2D1+IbyUBTU8IF2FmCTGiqqf6MQdh4Fc2GfYOeh3IrF5xRvovCEHUVj4VS2Kwucj6w4EE3GlZy8B/21f6XiOlpcqQRRHNLfrktDLQkeIUr8D0t2k2ihx2ksSVj+etqmrGppbW1KRlbcQ1S+xVWkcWDHlhomwPTZlRDqIhbOu6aYDBem6vXWexEpObLHiYVLEcFFr1rjSGrjaEJtunhSiFaV+UCCWBHyDeMiSq3SoRWysu7PrTI4uuC+/w9d8jL0614PQZ0B9bWYM1qjlR7lbnYjMlfT3DH7iB5ZULFyAcyYVLkvnBjER5SFsSUBOF6QMcB6+YpCALWX0vWhxJvi/IctyndMX0UAAfzgKzvekkOVmzzA9+EmbAMqwNQRyjnOU+yZOIz4cfD+VbG3oIM+0oEXNnM+Z3wgYqDPi+BKCm/LcCx8GBMFDFdDOnr41PDBIhzrZn2JMlr5yN96hBpD9RrmlrSDZaEbmMwrXK7utsBlY2vm5hKhiSbF8xzkZmIZdOcpIWGnLORZ2kyqJesxgHs0WdYzSVsr7yHQeHViVBammV0V6vyQcc18="
