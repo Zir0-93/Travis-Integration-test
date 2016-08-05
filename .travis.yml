@@ -8,7 +8,7 @@ after_success:
 - chmod a+x Dockerfile
 - cp /home/travis/build/k-dang/Travis-Integration-test/target/HelloWorldMVC-0.0.1-SNAPSHOT.war HelloWorldMVC.war
 - ls -l
-- ./success.sh
+- ./deploy.sh
 env:
   global:
     secure: "eR45MxCMfaKaQxzY2T9WjFHpmfiF7nkxDCu8H2v+PD/QxiwXk8pI2bBzIfnBzYDpA2YSNANb8WVTKeMsI1TPyCnCC8LxQtZ+6RmR6Rqrx67GK5wJcXPL2D1+IbyUBTU8IF2FmCTGiqqf6MQdh4Fc2GfYOeh3IrF5xRvovCEHUVj4VS2Kwucj6w4EE3GlZy8B/21f6XiOlpcqQRRHNLfrktDLQkeIUr8D0t2k2ihx2ksSVj+etqmrGppbW1KRlbcQ1S+xVWkcWDHlhomwPTZlRDqIhbOu6aYDBem6vXWexEpObLHiYVLEcFFr1rjSGrjaEJtunhSiFaV+UCCWBHyDeMiSq3SoRWysu7PrTI4uuC+/w9d8jL0614PQZ0B9bWYM1qjlR7lbnYjMlfT3DH7iB5ZULFyAcyYVLkvnBjER5SFsSUBOF6QMcB6+YpCALWX0vWhxJvi/IctyndMX0UAAfzgKzvekkOVmzzA9+EmbAMqwNQRyjnOU+yZOIz4cfD+VbG3oIM+0oEXNnM+Z3wgYqDPi+BKCm/LcCx8GBMFDFdDOnr41PDBIhzrZn2JMlr5yN96hBpD9RrmlrSDZaEbmMwrXK7utsBlY2vm5hKhiSbF8xzkZmIZdOcpIWGnLORZ2kyqJesxgHs0WdYzSVsr7yHQeHViVBammV0V6vyQcc18="
